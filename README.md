@@ -1,1 +1,1 @@
-# Shai-Hulud-bot
+# Shai-Hulud bot
