@@ -4,12 +4,13 @@ import aiohttp
 import json
 import FunnyPets
 from FunnyPets import CatAPI1
+from FunnyPets import DogAPI1
 import SingSongs
 from SingSongs import Sing
 
 sing = SingSongs.Sing()
 Cat1 = CatAPI1()
-
+Dog1 = DogAPI1()
 # Definindo o token do seu bot (substitua pelo seu próprio token)
 TOKEN = ''
 
@@ -47,6 +48,11 @@ async def on_message(message):
 
     if 'quero muitos gatos' in message.content.lower():
         await Cat1.catGet10(message)
+    if 'quero um cachorro' in message.content.lower():
+        await Dog1.DogGet1(message)
+
+    if 'quero muitos cachorros' in message.content.lower():
+        await Dog1.DogGet10(message)
     await bot.process_commands(message)  # Garante que os comandos sejam processados corretamente
     
 # Rodando o bot com o token fornecido
