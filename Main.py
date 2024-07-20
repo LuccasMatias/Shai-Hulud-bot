@@ -1,9 +1,14 @@
 import discord # type: ignore
+from discord.ext import commands # type: ignore
+import aiohttp
+import json
+import FunnyPets
+from FunnyPets import CatAPI1
 import SingSongs
 from SingSongs import Sing
-from discord.ext import commands # type: ignore
 
 sing = SingSongs.Sing()
+Cat1 = CatAPI1()
 
 # Definindo o token do seu bot (substitua pelo seu próprio token)
 TOKEN = ''
@@ -23,17 +28,26 @@ async def on_ready():
     print(f'Bot está pronto como {bot.user.name}')
     print(f'ID do Bot: {bot.user.id}')
 
-# Evento para responder com "Pong!" ao receber "ping" em qualquer mensagem de texto
+#------------------------------------------------------------------------------------------------------------------------------------
+#                                    EVENTOS DE TEXTO
+#------------------------------------------------------------------------------------------------------------------------------------
+#------- Sing event
+
 @bot.event
 async def on_message(message):
     print(message)
     if message.author == bot.user:
         return  # Evita que o bot responda a si mesmo
-
-    if 'never gonna give you up' in message.content.lower():
+    
+    if 'never gonna give you up' in message.content.lower(): 
         await sing.NeverGonnaGiveYouUp(message)
 
-    await bot.process_commands(message)  # Garante que os comandos sejam processados corretamente
+    if 'quero um gato' in message.content.lower():
+        await Cat1.catGet1(message)
 
+    if 'quero muitos gatos' in message.content.lower():
+        await Cat1.catGet10(message)
+    await bot.process_commands(message)  # Garante que os comandos sejam processados corretamente
+    
 # Rodando o bot com o token fornecido
 bot.run(TOKEN)
