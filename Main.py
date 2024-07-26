@@ -2,17 +2,16 @@ import discord # type: ignore
 from discord.ext import commands # type: ignore
 import aiohttp
 import json
-import FunnyPets
-from FunnyPets import CatAPI1
-from FunnyPets import DogAPI1
-import SingSongs
-from SingSongs import Sing
+import bin.FunnyPets as FunnyPets
+from bin.FunnyPets import CatAPI1
+from bin.FunnyPets import DogAPI1
+import bin.SingSongs as SingSongs
+from bin.SingSongs import Sing
 
 sing = SingSongs.Sing()
 Cat1 = CatAPI1()
 Dog1 = DogAPI1()
 # Definindo o token do seu bot (substitua pelo seu próprio token)
-TOKEN = ''
 
 # Definindo os intents que seu bot usará
 intents = discord.Intents.default()
